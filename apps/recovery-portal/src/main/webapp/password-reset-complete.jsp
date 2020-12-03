@@ -113,6 +113,7 @@
         if (tenantDomain == null) {
             tenantDomain = IdentityManagementEndpointConstants.SUPER_TENANT;
         }
+        username = username + "@" + tenantDomain;
         tenantProperty.setValue(URLEncoder.encode(tenantDomain, "UTF-8"));
         properties.add(tenantProperty);
         Map<String, String> localVarHeaderParams = new HashMap<>();
@@ -155,7 +156,7 @@
                 }
                 String userstoredomain = queryMap.get("userstoredomain");
                 if (userstoredomain != null) {
-                  username = userstoredomain + "/" + username;
+                    username = userstoredomain + "/" + username;
                 }
                 String signature = Base64.getEncoder().encodeToString(SignatureUtil.doSignature(username));
                 JSONObject cookieValueInJson = new JSONObject();
